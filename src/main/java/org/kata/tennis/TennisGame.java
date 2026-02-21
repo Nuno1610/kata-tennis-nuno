@@ -14,14 +14,13 @@ public class TennisGame {
 
     public String getScore() {
 
-        // Advantage (solo cuando uno tiene 4 y el otro 3 por ahora)
-        if (playerOnePoints == 4 && playerTwoPoints == 3) {
-            return "Advantage Player 1";
-        }
+        // Advantage (cuando ambos tienen al menos 3 y diferencia 1)
+        if (playerOnePoints >= 3 && playerTwoPoints >= 3) {
+            int diff = playerOnePoints - playerTwoPoints;
 
-        // Deuce exacto
-        if (playerOnePoints == 3 && playerTwoPoints == 3) {
-            return "Deuce";
+            if (diff == 1) return "Advantage Player 1";
+            if (diff == -1) return "Advantage Player 2";
+            if (diff == 0) return "Deuce";
         }
 
         // Caso especial inicial
@@ -30,7 +29,7 @@ public class TennisGame {
         }
 
         // Empates antes de 40
-        if (playerOnePoints == playerTwoPoints && playerOnePoints < 3) {
+        if (playerOnePoints == playerTwoPoints) {
             return pointName(playerOnePoints) + "-All";
         }
 
