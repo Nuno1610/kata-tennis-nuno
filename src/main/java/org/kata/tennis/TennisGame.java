@@ -2,13 +2,8 @@ package org.kata.tennis;
 
 public class TennisGame {
 
-    private final Player playerOne;
-    private final Player playerTwo;
-
-    public TennisGame() {
-        this.playerOne = new Player("Player 1");
-        this.playerTwo = new Player("Player 2");
-    }
+    private final Player playerOne = new Player("Player 1");
+    private final Player playerTwo = new Player("Player 2");
 
     public void playerOneScores() {
         playerOne.score();
@@ -20,8 +15,6 @@ public class TennisGame {
 
     public String getScore() {
 
-        if (isStart()) return "Love-Love";
-
         if (isWin()) return getWinner();
 
         if (isDeuce()) return "Deuce";
@@ -29,6 +22,8 @@ public class TennisGame {
         if (isAdvantage()) return getAdvantagePlayer();
 
         if (isTie()) return pointName(playerOne.getPoints()) + "-All";
+
+        if (isStart()) return "Love-Love";
 
         return pointName(playerOne.getPoints()) + "-"
                 + pointName(playerTwo.getPoints());
