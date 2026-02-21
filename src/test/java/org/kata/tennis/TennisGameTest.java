@@ -96,4 +96,23 @@ class TennisGameTest {
 
         assertEquals("Advantage Player 2", game.getScore());
     }
+
+    @Test
+    void testPlayerOneWinsAfterAdvantage_ShouldBeWinPlayerOne() {
+        TennisGame game = new TennisGame();
+
+        // Llegamos a Deuce (3-3)
+        for (int i = 0; i < 3; i++) {
+            game.playerOneScores();
+            game.playerTwoScores();
+        }
+
+        // Player 1 consigue ventaja
+        game.playerOneScores();
+
+        // Player 1 vuelve a marcar
+        game.playerOneScores();
+
+        assertEquals("Player 1 wins", game.getScore());
+    }
 }
