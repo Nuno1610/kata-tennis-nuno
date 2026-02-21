@@ -49,4 +49,19 @@ class TennisGameTest {
         game.playerTwoScores();
         assertEquals("Love-Thirty", game.getScore());
     }
+
+    @Test
+    void testScoreIsFortyAll_ShouldBeDeuce() {
+        TennisGame game = new TennisGame();
+
+        game.playerOneScores();
+        game.playerOneScores();
+        game.playerOneScores();
+
+        game.playerTwoScores();
+        game.playerTwoScores();
+        game.playerTwoScores();
+
+        assertEquals("Deuce", game.getScore());
+    }
 }
