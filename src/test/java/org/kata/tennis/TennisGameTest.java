@@ -25,4 +25,12 @@ class TennisGameTest {
         game.playerTwoScores();
         assertEquals("Love-Fifteen", game.getScore());
     }
+
+    @Test
+    void testBothPlayersScoreOnce_ShouldBeFifteenAll() {
+        TennisGame game = new TennisGame();
+        game.playerOneScores();
+        game.playerTwoScores();
+        assertEquals("Fifteen-All", game.getScore());
+    }
 }
