@@ -1,6 +1,7 @@
 package org.kata.tennis;
 
 public class TennisGame {
+
     private int playerOnePoints = 0;
     private int playerTwoPoints = 0;
 
@@ -14,32 +15,66 @@ public class TennisGame {
 
     public String getScore() {
 
-        int diff = playerOnePoints - playerTwoPoints;
-
-        // Victoria
-        if (playerOnePoints >= 4 || playerTwoPoints >= 4) {
-            if (diff >= 2) return "Player 1 wins";
-            if (diff <= -2) return "Player 2 wins";
-        }
-
-        // Deuce / Advantage
-        if (playerOnePoints >= 3 && playerTwoPoints >= 3) {
-            if (diff == 0) return "Deuce";
-            if (diff == 1) return "Advantage Player 1";
-            if (diff == -1) return "Advantage Player 2";
-        }
-
-        // Caso especial inicial
-        if (playerOnePoints == 0 && playerTwoPoints == 0) {
+        if (isStart()) {
             return "Love-Love";
         }
 
-        // Empates antes de 40
-        if (playerOnePoints == playerTwoPoints) {
+        if (isWin()) {
+            return getWinner();
+        }
+
+        if (isDeuce()) {
+            return "Deuce";
+        }
+
+        if (isAdvantage()) {
+            return getAdvantagePlayer();
+        }
+
+        if (isTie()) {
             return pointName(playerOnePoints) + "-All";
         }
 
         return pointName(playerOnePoints) + "-" + pointName(playerTwoPoints);
+    }
+
+    private boolean isStart() {
+        return playerOnePoints == 0 && playerTwoPoints == 0;
+    }
+
+    private boolean isWin() {
+        return (playerOnePoints >= 4 || playerTwoPoints >= 4)
+                && Math.abs(playerOnePoints - playerTwoPoints) >= 2;
+    }
+
+    private String getWinner() {
+        return playerOnePoints > playerTwoPoints
+                ? "Player 1 wins"
+                : "Player 2 wins";
+    }
+
+    private boolean isDeuce() {
+        return playerOnePoints >= 3
+                && playerTwoPoints >= 3
+                && playerOnePoints == playerTwoPoints;
+    }
+
+    private boolean isAdvantage() {
+        return playerOnePoints >= 3
+                && playerTwoPoints >= 3
+                && Math.abs(playerOnePoints - playerTwoPoints) == 1;
+    }
+
+    private String getAdvantagePlayer() {
+        return playerOnePoints > playerTwoPoints
+                ? "Advantage Player 1"
+                : "Advantage Player 2";
+    }
+
+    private boolean isTie() {
+        return playerOnePoints == playerTwoPoints
+                && playerOnePoints > 0
+                && playerOnePoints < 3;
     }
 
     private String pointName(int points) {
