@@ -11,4 +11,11 @@ class TennisGameTest {
         TennisGame game = new TennisGame();
         assertEquals("Love-Love", game.getScore());
     }
+
+    @Test
+    void testPlayerOneScoresOnce_ShouldBeFifteenLove() {
+        TennisGame game = new TennisGame();
+        game.playerOneScores();
+        assertEquals("Fifteen-Love", game.getScore());
+    }
 }
