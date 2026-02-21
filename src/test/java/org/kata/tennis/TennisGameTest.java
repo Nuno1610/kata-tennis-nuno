@@ -80,4 +80,20 @@ class TennisGameTest {
 
         assertEquals("Advantage Player 1", game.getScore());
     }
+
+    @Test
+    void testPlayerTwoAdvantageAfterDeuce_ShouldBeAdvantagePlayerTwo() {
+        TennisGame game = new TennisGame();
+
+        // Llegamos a Deuce (3-3)
+        for (int i = 0; i < 3; i++) {
+            game.playerOneScores();
+            game.playerTwoScores();
+        }
+
+        // Player 2 marca un punto más
+        game.playerTwoScores();
+
+        assertEquals("Advantage Player 2", game.getScore());
+    }
 }
