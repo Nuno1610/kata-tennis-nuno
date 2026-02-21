@@ -14,13 +14,14 @@ public class TennisGame {
 
     public String getScore() {
 
-        // Advantage (cuando ambos tienen al menos 3 y diferencia 1)
         if (playerOnePoints >= 3 && playerTwoPoints >= 3) {
             int diff = playerOnePoints - playerTwoPoints;
 
+            if (diff == 0) return "Deuce";
             if (diff == 1) return "Advantage Player 1";
             if (diff == -1) return "Advantage Player 2";
-            if (diff == 0) return "Deuce";
+            if (diff >= 2) return "Player 1 wins";
+            if (diff <= -2) return "Player 2 wins";
         }
 
         // Caso especial inicial
