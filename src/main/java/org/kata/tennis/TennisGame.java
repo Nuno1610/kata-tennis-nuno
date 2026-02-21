@@ -14,6 +14,11 @@ public class TennisGame {
 
     public String getScore() {
 
+        // Deuce (exactamente 40-40 por ahora)
+        if (playerOnePoints == 3 && playerTwoPoints == 3) {
+            return "Deuce";
+        }
+
         // Caso especial inicial
         if (playerOnePoints == 0 && playerTwoPoints == 0) {
             return "Love-Love";
