@@ -1,20 +1,28 @@
 package org.kata.tennis;
 
 public class TennisGame {
-
     private int playerOnePoints = 0;
+    private int playerTwoPoints = 0;
 
     public void playerOneScores() {
         playerOnePoints++;
     }
 
+    public void playerTwoScores() {
+        playerTwoPoints++;
+    }
+
     public String getScore() {
-        if (playerOnePoints == 0) {
-            return "Love-Love";
-        }
-        if (playerOnePoints == 1) {
-            return "Fifteen-Love";
-        }
-        return null;
+        return pointName(playerOnePoints) + "-" + pointName(playerTwoPoints);
+    }
+
+    private String pointName(int points) {
+        return switch (points) {
+            case 0 -> "Love";
+            case 1 -> "Fifteen";
+            case 2 -> "Thirty";
+            case 3 -> "Forty";
+            default -> throw new IllegalStateException("Unexpected points: " + points);
+        };
     }
 }
