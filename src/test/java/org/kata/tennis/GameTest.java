@@ -4,31 +4,31 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TennisGameTest {
+class GameTest {
 
     @Test
     void shouldReturnLoveLove_OnStart() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
         assertEquals("Love-Love", game.getScore());
     }
 
     @Test
     void testPlayerOneScoresOnce_ShouldBeFifteenLove() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
         game.playerOneScores();
         assertEquals("Fifteen-Love", game.getScore());
     }
 
     @Test
     void testPlayerTwoScoresOnce_ShouldBeLoveFifteen() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
         game.playerTwoScores();
         assertEquals("Love-Fifteen", game.getScore());
     }
 
     @Test
     void testBothPlayersScoreOnce_ShouldBeFifteenAll() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
         game.playerOneScores();
         game.playerTwoScores();
         assertEquals("Fifteen-All", game.getScore());
@@ -36,7 +36,7 @@ class TennisGameTest {
 
     @Test
     void testPlayerOneScoresTwice_ShouldBeThirtyLove() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
         game.playerOneScores();
         game.playerOneScores();
         assertEquals("Thirty-Love", game.getScore());
@@ -44,7 +44,7 @@ class TennisGameTest {
 
     @Test
     void testPlayerTwoScoresTwice_ShouldBeLoveThirty() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
         game.playerTwoScores();
         game.playerTwoScores();
         assertEquals("Love-Thirty", game.getScore());
@@ -52,7 +52,7 @@ class TennisGameTest {
 
     @Test
     void testScoreIsFortyAll_ShouldBeDeuce() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
 
         game.playerOneScores();
         game.playerOneScores();
@@ -67,7 +67,7 @@ class TennisGameTest {
 
     @Test
     void testPlayerOneAdvantageAfterDeuce_ShouldBeAdvantagePlayerOne() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
 
         // Llegamos a Deuce (3-3)
         for (int i = 0; i < 3; i++) {
@@ -83,7 +83,7 @@ class TennisGameTest {
 
     @Test
     void testPlayerTwoAdvantageAfterDeuce_ShouldBeAdvantagePlayerTwo() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
 
         // Llegamos a Deuce (3-3)
         for (int i = 0; i < 3; i++) {
@@ -99,7 +99,7 @@ class TennisGameTest {
 
     @Test
     void testPlayerOneWinsAfterAdvantage_ShouldBeWinPlayerOne() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
 
         // Llegamos a Deuce (3-3)
         for (int i = 0; i < 3; i++) {
@@ -118,7 +118,7 @@ class TennisGameTest {
 
     @Test
     void testPlayerTwoWinsAfterAdvantage_ShouldBeWinPlayerTwo() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
 
         // Llegamos a Deuce (3-3)
         for (int i = 0; i < 3; i++) {
@@ -137,7 +137,7 @@ class TennisGameTest {
 
     @Test
     void testAdvantageLost_BackToDeuce() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
 
         // Llegamos a Deuce (3-3)
         for (int i = 0; i < 3; i++) {
@@ -156,7 +156,7 @@ class TennisGameTest {
 
     @Test
     void testPlayerOneWinsByTwoPoints_ShouldBeWinPlayerOne() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
 
         // Player 1 gana 4 puntos seguidos (4-0)
         for (int i = 0; i < 4; i++) {
@@ -168,7 +168,7 @@ class TennisGameTest {
 
     @Test
     void testPlayerTwoWinsByTwoPoints_ShouldBeWinPlayerTwo() {
-        TennisGame game = new TennisGame();
+        Game game = new Game();
 
         // Player 2 gana 4 puntos seguidos (0-4)
         for (int i = 0; i < 4; i++) {

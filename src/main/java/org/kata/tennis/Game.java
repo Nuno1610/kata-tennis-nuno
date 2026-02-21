@@ -1,6 +1,6 @@
 package org.kata.tennis;
 
-public class TennisGame {
+public class Game {
 
     private final Player playerOne = new Player("Player 1");
     private final Player playerTwo = new Player("Player 2");
