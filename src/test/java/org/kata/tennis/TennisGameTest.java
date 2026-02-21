@@ -153,4 +153,16 @@ class TennisGameTest {
 
         assertEquals("Deuce", game.getScore());
     }
+
+    @Test
+    void testPlayerOneWinsByTwoPoints_ShouldBeWinPlayerOne() {
+        TennisGame game = new TennisGame();
+
+        // Player 1 gana 4 puntos seguidos (4-0)
+        for (int i = 0; i < 4; i++) {
+            game.playerOneScores();
+        }
+
+        assertEquals("Player 1 wins", game.getScore());
+    }
 }
