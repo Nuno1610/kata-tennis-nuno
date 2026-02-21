@@ -2,79 +2,75 @@ package org.kata.tennis;
 
 public class TennisGame {
 
-    private int playerOnePoints = 0;
-    private int playerTwoPoints = 0;
+    private final Player playerOne;
+    private final Player playerTwo;
+
+    public TennisGame() {
+        this.playerOne = new Player("Player 1");
+        this.playerTwo = new Player("Player 2");
+    }
 
     public void playerOneScores() {
-        playerOnePoints++;
+        playerOne.score();
     }
 
     public void playerTwoScores() {
-        playerTwoPoints++;
+        playerTwo.score();
     }
 
     public String getScore() {
 
-        if (isStart()) {
-            return "Love-Love";
-        }
+        if (isStart()) return "Love-Love";
 
-        if (isWin()) {
-            return getWinner();
-        }
+        if (isWin()) return getWinner();
 
-        if (isDeuce()) {
-            return "Deuce";
-        }
+        if (isDeuce()) return "Deuce";
 
-        if (isAdvantage()) {
-            return getAdvantagePlayer();
-        }
+        if (isAdvantage()) return getAdvantagePlayer();
 
-        if (isTie()) {
-            return pointName(playerOnePoints) + "-All";
-        }
+        if (isTie()) return pointName(playerOne.getPoints()) + "-All";
 
-        return pointName(playerOnePoints) + "-" + pointName(playerTwoPoints);
+        return pointName(playerOne.getPoints()) + "-"
+                + pointName(playerTwo.getPoints());
     }
 
     private boolean isStart() {
-        return playerOnePoints == 0 && playerTwoPoints == 0;
+        return playerOne.getPoints() == 0 && playerTwo.getPoints() == 0;
     }
 
     private boolean isWin() {
-        return (playerOnePoints >= 4 || playerTwoPoints >= 4)
-                && Math.abs(playerOnePoints - playerTwoPoints) >= 2;
+        return (playerOne.getPoints() >= 4 || playerTwo.getPoints() >= 4)
+                && Math.abs(playerOne.getPoints() - playerTwo.getPoints()) >= 2;
     }
 
     private String getWinner() {
-        return playerOnePoints > playerTwoPoints
-                ? "Player 1 wins"
-                : "Player 2 wins";
+        return playerOne.getPoints() > playerTwo.getPoints()
+                ? playerOne.getName() + " wins"
+                : playerTwo.getName() + " wins";
     }
 
     private boolean isDeuce() {
-        return playerOnePoints >= 3
-                && playerTwoPoints >= 3
-                && playerOnePoints == playerTwoPoints;
+        return playerOne.getPoints() >= 3
+                && playerTwo.getPoints() >= 3
+                && playerOne.getPoints() == playerTwo.getPoints();
     }
 
     private boolean isAdvantage() {
-        return playerOnePoints >= 3
-                && playerTwoPoints >= 3
-                && Math.abs(playerOnePoints - playerTwoPoints) == 1;
+        return playerOne.getPoints() >= 3
+                && playerTwo.getPoints() >= 3
+                && Math.abs(playerOne.getPoints() - playerTwo.getPoints()) == 1;
     }
 
     private String getAdvantagePlayer() {
-        return playerOnePoints > playerTwoPoints
-                ? "Advantage Player 1"
-                : "Advantage Player 2";
+        return playerOne.getPoints() > playerTwo.getPoints()
+                ? "Advantage " + playerOne.getName()
+                : "Advantage " + playerTwo.getName();
     }
 
     private boolean isTie() {
-        return playerOnePoints == playerTwoPoints
-                && playerOnePoints > 0
-                && playerOnePoints < 3;
+        return playerOne.getPoints() == playerTwo.getPoints()
+                && playerOne.getPoints() > 0
+                && playerOne.getPoints() < 3;
     }
 
     private String pointName(int points) {
