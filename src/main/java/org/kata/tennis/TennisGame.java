@@ -13,6 +13,17 @@ public class TennisGame {
     }
 
     public String getScore() {
+
+        // Caso especial inicial
+        if (playerOnePoints == 0 && playerTwoPoints == 0) {
+            return "Love-Love";
+        }
+
+        // Empates antes de 40
+        if (playerOnePoints == playerTwoPoints && playerOnePoints < 3) {
+            return pointName(playerOnePoints) + "-All";
+        }
+
         return pointName(playerOnePoints) + "-" + pointName(playerTwoPoints);
     }
 
