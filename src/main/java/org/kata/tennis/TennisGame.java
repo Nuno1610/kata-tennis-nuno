@@ -14,7 +14,12 @@ public class TennisGame {
 
     public String getScore() {
 
-        // Deuce (exactamente 40-40 por ahora)
+        // Advantage (solo cuando uno tiene 4 y el otro 3 por ahora)
+        if (playerOnePoints == 4 && playerTwoPoints == 3) {
+            return "Advantage Player 1";
+        }
+
+        // Deuce exacto
         if (playerOnePoints == 3 && playerTwoPoints == 3) {
             return "Deuce";
         }
