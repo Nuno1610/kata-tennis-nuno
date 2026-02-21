@@ -33,4 +33,20 @@ class TennisGameTest {
         game.playerTwoScores();
         assertEquals("Fifteen-All", game.getScore());
     }
+
+    @Test
+    void testPlayerOneScoresTwice_ShouldBeThirtyLove() {
+        TennisGame game = new TennisGame();
+        game.playerOneScores();
+        game.playerOneScores();
+        assertEquals("Thirty-Love", game.getScore());
+    }
+
+    @Test
+    void testPlayerTwoScoresTwice_ShouldBeLoveThirty() {
+        TennisGame game = new TennisGame();
+        game.playerTwoScores();
+        game.playerTwoScores();
+        assertEquals("Love-Thirty", game.getScore());
+    }
 }
