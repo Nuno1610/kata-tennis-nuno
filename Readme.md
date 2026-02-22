@@ -12,8 +12,6 @@ El objetivo no fue únicamente hacer que los tests pasaran, sino evolucionar el 
 *	Tie-break en 6–6
 *	Diseño limpio y extensible
 
-⸻
-
 ## 🧪 Enfoque TDD
 
 El desarrollo siguió el ciclo clásico:
@@ -28,8 +26,6 @@ Además:
 *	Se utilizaron tests unitarios clásicos.
 *	Se introdujeron tests parametrizados para cubrir múltiples escenarios.
 *	Se ajustaron algunos tests cuando el modelo de dominio lo exigía.
-
-⸻
 
 ## 🏗 Evolución del Diseño
 
@@ -51,8 +47,6 @@ Posteriormente se refactorizó para:
 *	Centralizar el cálculo de diferencias.
 *	Sustituir números mágicos por constantes.
 *	Mejorar legibilidad.
-
-⸻
 
 ### 2️⃣ Introducción del patrón Strategy
 
@@ -79,8 +73,6 @@ Implementaciones
 
 Esto permite que TennisSet delegue el comportamiento del juego actual sin conocer sus detalles internos.
 
-⸻
-
 ## 🎾 TennisSet
 
 TennisSet modela:	
@@ -96,11 +88,9 @@ Comportamiento clave
 * Al menos 6 juegos.	
 * Diferencia mínima de 2.
 
-⸻
-
 ## 🧠 Decisiones de diseño
 
-✔ Uso de Strategy
+### ✔ Uso de Strategy
 
 Se utilizó Strategy para:
 * Eliminar flags booleanos (tieBreak).	
@@ -108,9 +98,7 @@ Se utilizó Strategy para:
 * Cumplir el principio Open/Closed.	
 * Facilitar extensiones futuras.
 
-⸻
-
-✔ No uso de mocks
+### ✔ No uso de mocks
 
 No se utilizaron mocks porque:	
 * No existen dependencias externas.	
@@ -118,17 +106,13 @@ No se utilizaron mocks porque:
 * No hay infraestructura (BD, APIs, etc.). 
 * Mockear no aportaba valor en este contexto.
 
-⸻
-
-✔ Uso de tests parametrizados
+### ✔ Uso de tests parametrizados
 
 Se utilizaron @ParameterizedTest para:
 * Reducir duplicación.	
 * Cubrir múltiples escenarios.	
 * Hacer los tests más expresivos.	
 * Modelar mejor las variaciones del dominio.
-
-⸻
 
 ## 🧪 Cobertura funcional
 
