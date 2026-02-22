@@ -5,12 +5,34 @@ public class TennisSet {
     private int playerOneGames = 0;
     private int playerTwoGames = 0;
 
-    public void playerOneWinsGame() {
-        playerOneGames++;
+    private Game currentGame = new Game();
+
+    public void playerOneScores() {
+        if (isFinished()) return;
+
+        currentGame.playerOneScores();
+        checkGameFinished();
     }
 
-    public void playerTwoWinsGame() {
-        playerTwoGames++;
+    public void playerTwoScores() {
+        if (isFinished()) return;
+
+        currentGame.playerTwoScores();
+        checkGameFinished();
+    }
+
+    private void checkGameFinished() {
+        String gameScore = currentGame.getScore();
+
+        if ("Player 1 wins".equals(gameScore)) {
+            playerOneGames++;
+            currentGame = new Game();
+        }
+
+        if ("Player 2 wins".equals(gameScore)) {
+            playerTwoGames++;
+            currentGame = new Game();
+        }
     }
 
     public String getScore() {
