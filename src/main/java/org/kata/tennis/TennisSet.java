@@ -2,10 +2,16 @@ package org.kata.tennis;
 
 public class TennisSet {
 
+    private static final int GAMES_TO_WIN = 6;
+
     private int playerOneGames = 0;
     private int playerTwoGames = 0;
 
-    private Game currentGame = new Game();
+    private GameStrategy currentGame = new Game();
+
+    // =========================
+    // Punto ganado
+    // =========================
 
     public void playerOneScores() {
         if (isFinished()) return;
@@ -21,26 +27,56 @@ public class TennisSet {
         checkGameFinished();
     }
 
-    private void checkGameFinished() {
-        String gameScore = currentGame.getScore();
+    // =========================
+    // Gestión de fin de Game
+    // =========================
 
-        if ("Player 1 wins".equals(gameScore)) {
+    private void checkGameFinished() {
+
+        if (!currentGame.isFinished()) return;
+
+        String winner = currentGame.getWinner();
+
+        if ("Player 1".equals(winner)) {
             playerOneGames++;
-            currentGame = new Game();
+        } else {
+            playerTwoGames++;
         }
 
-        if ("Player 2 wins".equals(gameScore)) {
-            playerTwoGames++;
+        if (shouldStartTieBreak()) {
+            currentGame = new TieBreakGame();
+        } else if (!isFinished()) {
             currentGame = new Game();
         }
     }
+
+    private boolean shouldStartTieBreak() {
+        return playerOneGames == GAMES_TO_WIN
+                && playerTwoGames == GAMES_TO_WIN;
+    }
+
+    // =========================
+    // Estado del Set
+    // =========================
 
     public String getScore() {
         return playerOneGames + "-" + playerTwoGames;
     }
 
+    public boolean isTieBreak() {
+        return currentGame instanceof TieBreakGame;
+    }
+
     public boolean isFinished() {
-        return (playerOneGames >= 6 || playerTwoGames >= 6)
+
+        // Si el game actual es tie-break y ha terminado,
+        // el set termina automáticamente
+        if (currentGame instanceof TieBreakGame && currentGame.isFinished()) {
+            return true;
+        }
+
+        // Regla normal de set
+        return (playerOneGames >= GAMES_TO_WIN || playerTwoGames >= GAMES_TO_WIN)
                 && Math.abs(playerOneGames - playerTwoGames) >= 2;
     }
 

@@ -109,11 +109,27 @@ class TennisSetTest {
     // Helpers
     // =========================
 
+    // =========================
+// Helpers
+// =========================
+
     private void simulateSet(TennisSet set, int p1Games, int p2Games) {
-        for (int i = 0; i < p1Games; i++) {
+
+        int min = Math.min(p1Games, p2Games);
+
+        // Alternamos hasta el mínimo
+        for (int i = 0; i < min; i++) {
+            winGameForPlayerOne(set);
+            winGameForPlayerTwo(set);
+        }
+
+        // Juegos restantes de Player 1
+        for (int i = 0; i < p1Games - min; i++) {
             winGameForPlayerOne(set);
         }
-        for (int i = 0; i < p2Games; i++) {
+
+        // Juegos restantes de Player 2
+        for (int i = 0; i < p2Games - min; i++) {
             winGameForPlayerTwo(set);
         }
     }
