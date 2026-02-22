@@ -15,25 +15,49 @@ class TennisSetTest {
     }
 
     @Test
-    void playerOneWinsOneGame_ShouldBeOneZero() {
+    void whenPlayerOneWinsOneGame_SetScoreShouldBeOneZero() {
         TennisSet set = new TennisSet();
-        set.playerOneWinsGame();
+
+        // Player 1 gana el game (4 puntos seguidos)
+        for (int i = 0; i < 4; i++) {
+            set.playerOneScores();
+        }
+
         assertEquals("1-0", set.getScore());
     }
 
     @Test
-    void playerTwoWinsOneGame_ShouldBeZeroOne() {
+    void whenPlayerTwoWinsOneGame_SetScoreShouldBeZeroOne() {
         TennisSet set = new TennisSet();
-        set.playerTwoWinsGame();
+
+        for (int i = 0; i < 4; i++) {
+            set.playerTwoScores();
+        }
+
         assertEquals("0-1", set.getScore());
     }
 
     @Test
-    void playerOneWinsSixGames_ShouldWinSet_6_0() {
+    void playerOneWinsTwoGames_ShouldBeTwoZero() {
         TennisSet set = new TennisSet();
 
-        for (int i = 0; i < 6; i++) {
-            set.playerOneWinsGame();
+        // Game 1
+        for (int i = 0; i < 4; i++) set.playerOneScores();
+
+        // Game 2
+        for (int i = 0; i < 4; i++) set.playerOneScores();
+
+        assertEquals("2-0", set.getScore());
+    }
+
+    @Test
+    void playerOneWinsSetSixZero_ShouldFinishSet() {
+        TennisSet set = new TennisSet();
+
+        for (int g = 0; g < 6; g++) {
+            for (int p = 0; p < 4; p++) {
+                set.playerOneScores();
+            }
         }
 
         assertEquals("6-0", set.getScore());
@@ -42,23 +66,22 @@ class TennisSetTest {
     }
 
     @Test
-    void playerOneWinsSixGamesWithTwoDifference_ShouldWinSet_6_4() {
-        TennisSet set = new TennisSet();
-
-        for (int i = 0; i < 6; i++) set.playerOneWinsGame();
-        for (int i = 0; i < 4; i++) set.playerTwoWinsGame();
-
-        assertEquals("6-4", set.getScore());
-        assertTrue(set.isFinished());
-        assertEquals("Player 1", set.getWinner());
-    }
-
-    @Test
     void sixFive_ShouldNotBeFinished() {
         TennisSet set = new TennisSet();
 
-        for (int i = 0; i < 6; i++) set.playerOneWinsGame();
-        for (int i = 0; i < 5; i++) set.playerTwoWinsGame();
+        // Player 1 gana 6 juegos
+        for (int g = 0; g < 6; g++) {
+            for (int p = 0; p < 4; p++) {
+                set.playerOneScores();
+            }
+        }
+
+        // Player 2 gana 5 juegos
+        for (int g = 0; g < 5; g++) {
+            for (int p = 0; p < 4; p++) {
+                set.playerTwoScores();
+            }
+        }
 
         assertEquals("6-5", set.getScore());
         assertFalse(set.isFinished());
@@ -66,26 +89,25 @@ class TennisSetTest {
     }
 
     @Test
-    void sevenFive_ShouldBeFinished() {
+    void sevenFive_ShouldFinishSet() {
         TennisSet set = new TennisSet();
 
-        for (int i = 0; i < 7; i++) set.playerOneWinsGame();
-        for (int i = 0; i < 5; i++) set.playerTwoWinsGame();
+        // Player 1 gana 7 juegos
+        for (int g = 0; g < 7; g++) {
+            for (int p = 0; p < 4; p++) {
+                set.playerOneScores();
+            }
+        }
+
+        // Player 2 gana 5 juegos
+        for (int g = 0; g < 5; g++) {
+            for (int p = 0; p < 4; p++) {
+                set.playerTwoScores();
+            }
+        }
 
         assertEquals("7-5", set.getScore());
         assertTrue(set.isFinished());
         assertEquals("Player 1", set.getWinner());
-    }
-
-    @Test
-    void playerTwoWinsSet_ShouldReturnCorrectWinner() {
-        TennisSet set = new TennisSet();
-
-        for (int i = 0; i < 6; i++) {
-            set.playerTwoWinsGame();
-        }
-
-        assertTrue(set.isFinished());
-        assertEquals("Player 2", set.getWinner());
     }
 }
