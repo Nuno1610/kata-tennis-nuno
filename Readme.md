@@ -147,5 +147,3 @@ Set
 *	Activación del tie-break en 6–6.
 *	Tie-break con diferencia de 2 (7–5, 8–6, etc.).
 *	Finalización correcta del set tras tie-break.
-⸻
-
